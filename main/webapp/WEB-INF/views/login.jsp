@@ -10,15 +10,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Welcome to the Task Organizer</h1> <br>
-<p class="message">${ message }</p> <br>
+<a href="/">Home</a><br>
 
-<h3>New User? <button><a href="/register">Register</a></button></h3>
-<br>
-<h3>Returning User?<button><a href="/login">Log In</a></button></h3>
-	<br>
-	<c:if test="${ not empty user }">
-		<p>Finished?<a href="/logout">Log Out</a></p>
-	</c:if>
+<h1>Login</h1>
+	
+	<p class="message">${ message }</p>
+	
+	<form action="/login" method="post">
+		<p>
+			<label for="email">Email:</label> <input id="email" name="email" value="${ param.email }" required minlength="2" />
+		</p>		<p>
+			<label for="password">Password:</label> <input id="password" type="password" name="password" required minlength="2" />
+		</p>
+		<p>
+			<button>Submit</button>
+		</p>
+	</form>
+
 </body>
 </html>

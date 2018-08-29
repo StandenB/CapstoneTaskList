@@ -1,5 +1,7 @@
 package co.grandcircus.tasklist;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.grandcircus.tasklist.dao.TaskDao;
 import co.grandcircus.tasklist.dao.UserDao;
@@ -32,7 +35,8 @@ public class TasklistController {
 	@RequestMapping("/tasks")
 	public ModelAndView listTasks() {
 		ModelAndView mav = new ModelAndView("task-list");
-		mav.addObject("tasks", taskDao.findAll());
+		mav.addObject("task", taskDao.findAll());
+		// was "tasks"
 		return mav;
 	}
 	
@@ -57,16 +61,16 @@ public class TasklistController {
 		return mav;
 	}
 
-	@RequestMapping("/tasks/add")
-	public ModelAndView addTask() {
+	@RequestMapping("/tasks/{id}/add")
+	public ModelAndView addTask(@PathVariable("id") Task task) {
 		ModelAndView mav = new ModelAndView("task-add");
 		return mav;
 	}
 
-	@PostMapping("/tasks/add")
-	public ModelAndView submitAddBootcamp(Task task) {
+	@PostMapping("/tasks/{id}/add")
+	public ModelAndView submitAddBootcamp(@PathVariable("id") Task task) {
 		taskDao.save(task);
-		ModelAndView mav = new ModelAndView("redirect:/tasks");
+		ModelAndView mav = new ModelAndView("redirect:/task-show");
 		return mav;
 	}
 
@@ -89,5 +93,6 @@ public class TasklistController {
 		ModelAndView mav = new ModelAndView("redirect:/tasks/" + taskId);	
 		return mav;
 	}
+	
 }
 

@@ -22,7 +22,7 @@
 				<tbody>
 					<c:forEach var="task" items="${ tasks }">
 						<tr>
-							<td><a href="/tasks/${ task.id }">${ task.complete }</a></td>
+							<td><input type="checkbox" id="complete" name="complete" value=${ task.complete }></td> 
 							<td>${ task.taskname }</td>
 							<td>${ task.duedate }</td>
 						</tr>

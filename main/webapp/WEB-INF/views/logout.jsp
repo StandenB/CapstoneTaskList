@@ -10,15 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Welcome to the Task Organizer</h1> <br>
-<p class="message">${ message }</p> <br>
 
-<h3>New User? <button><a href="/register">Register</a></button></h3>
-<br>
-<h3>Returning User?<button><a href="/login">Log In</a></button></h3>
-	<br>
-	<c:if test="${ not empty user }">
-		<p>Finished?<a href="/logout">Log Out</a></p>
-	</c:if>
 </body>
 </html>

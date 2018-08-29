@@ -4,21 +4,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <!-- Custom CSS goes below Bootstrap CSS -->
 <link rel="stylesheet" href="/style.css" />
-<title>Insert title here</title>
 </head>
 <body>
-<h1>Welcome to the Task Organizer</h1> <br>
-<p class="message">${ message }</p> <br>
-
-<h3>New User? <button><a href="/register">Register</a></button></h3>
-<br>
-<h3>Returning User?<button><a href="/login">Log In</a></button></h3>
-	<br>
-	<c:if test="${ not empty user }">
-		<p>Finished?<a href="/logout">Log Out</a></p>
-	</c:if>
+<main class="container">
+		<h1>List of Users Registered</h1>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Username</th><th>Email</th><th>Applications</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="student" items="${ students }">
+					<tr>
+						<td><a href="/students/${ student.id }">${ student.name }</a></td>
+						<td>${ student.bootcamp.name }</td>
+						<td>${ student.applications.size() }</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<p>
+			<a href="/users/add" class="btn btn-secondary">Add</a>
+		</p>
+	</main>
 </body>
 </html>
